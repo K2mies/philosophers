@@ -1,71 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   multithreadloop00.c                                :+:      :+:    :+:   */
+/*   trylock_lock_example00.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/17 13:52:21 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/19 10:49:59 by rhvidste         ###   ########.fr       */
+/*   Created: 2025/02/19 11:53:37 by rhvidste          #+#    #+#             */
+/*   Updated: 2025/02/19 13:06:07 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
 
-int	mails = 0;
-//int	lock = 0;
 pthread_mutex_t	mutex;
 
-void	*routine()
+void	*routine(void *arg)
 {
-	int	i;
-	i = -1;
-	while (++i < 100000)//creates a race condition
-	{
-//		if (lock == 1)
-//		{
-//			//wait untill the lock is 0
-//		}
-//		lock = 1;
-		pthread_mutex_lock(&mutex); //lock == 1 (locked)
-		mails++;
-		pthread_mutex_unlock(&mutex); //lock == 0 (unlocked)
-//		lock = 0;
-		// read mails
-		// incrament
-		// write mails
+	if(pthread_mutex_trylock(&mutex) == 0)
+	{	
+		printf("got lock\n");
+		usleep(1000000);
+		pthread_mutex_unlock(&mutex);
 	}
-	return (0);
+	else 
+	{
+		printf("didn't get lock\n");
+	}
+	return (NULL);
 }
 
 int	main(int argc, char **argv)
 {
-	pthread_t th[8];
-	int	i = -1;
+	pthread_t	*th;
+	th = malloc(sizeof(pthread_t) * 4);
+
 	pthread_mutex_init(&mutex, NULL);
-	while (++i < 8)
+	int i = -1;
+	while (++i < 4)
 	{
 		if (pthread_create(&th[i], NULL, &routine, NULL) != 0)
 		{
-			perror("Failed to create thread");
-			return (1);
+			perror("Error createing thread\n");
 		}
-		printf("Thread %d has started\n", i);
 	}
 	i = -1;
-	while (++i < 8)
+	while (++i < 4)
 	{
 		if (pthread_join(th[i], NULL) != 0)
 		{
-			return (2);
+			perror("Error joining thread\n");
 		}
-		printf("Thread %d has finished execution\n", i);	
 	}
 	pthread_mutex_destroy(&mutex);
-	printf("number of mails: %d\n", mails);
 	return (0);
 }
-
