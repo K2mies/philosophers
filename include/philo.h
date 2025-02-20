@@ -6,19 +6,23 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:28:30 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/20 13:54:16 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/20 17:03:02 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+#include <limits.h>
 #include <pthread.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <sys/time.h>
 #include <math.h>
+
+# define PHILO_MAX 200
 
 typedef struct			s_philo
 {
@@ -49,4 +53,10 @@ typedef struct			s_program
 	t_philo				*philos;
 }						t_program;
 
+
+//Utils-------------------------------------------------------------------------
+int	ft_atoi(const char *str);
+//Validation--------------------------------------------------------------------
+int	is_valid(int argc, char **argv);
+int	is_valid_number(char *arg);
 #endif
