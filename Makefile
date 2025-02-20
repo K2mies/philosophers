@@ -12,12 +12,36 @@ WHITE = \033[0;97m
 NAME	= philosophers
 CC		= cc
 CFLAGS	= -Wextra -Werror -Wall -pthread
+HEADERS = -I ./include
 
-SRCS	= $(shell find ./examples -iname "*.c")
-OBJS	= $(SRCS:.c=.o)
+SRC_DIR	= philo/
+OBJ_DIR = obj/
 
+SRCS	= $(shell find ./philo -iname "*.c")
+OBJS    = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
+
+#OBJS	= $(SRCS:.c=.o)
+
+#----------------------------------------------------------------------------------
 all: $(NAME)
 
-$(NAME): $(OBJS)
-		@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+$(NAME): $(OBJ_DIR) $(OBJS)
+		@$(CC) $(CFLAGS) $(OBJS) $(HEADERS) -o $(NAME)
 		@echo "$(GREEN)Succesfully built philosophers!$(DEF_COLOR)"
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+		@$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
+
+$(OBJ_DIR):
+		@mkdir -p $@
+#----------------------------------------------------------------------------------
+clean:
+		@rm	-rf $(OBJ_DIR)
+
+fclean: clean
+		@rm -rf $(NAME)
+		@echo "$(CYAN)philosophers executable files cleaned$(DEF_COLOR)"
+
+re:	fclean all
+		@echo "$(GREEN)Cleaned and rebuilt everytrhing for philosophers$(DEF_COLOR)"
+.PHONY: all clean fclean re
