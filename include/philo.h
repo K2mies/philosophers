@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:28:30 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/21 11:21:37 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:43:53 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct			s_philo
 	int					meals_eaten;
 	size_t				last_meal;
 	size_t				time_to_die;
+	size_t				time_to_eat;
 	size_t				time_to_sleep;
 	size_t				start_time;
 	int					num_of_philos;
@@ -47,6 +48,7 @@ typedef struct			s_philo
 
 typedef struct			s_data
 {
+	pthread_t			observer;
 	bool				dead_flag;
 	pthread_mutex_t		dead_lock;
 	pthread_mutex_t		meal_lock;
@@ -57,8 +59,18 @@ typedef struct			s_data
 
 
 //Utils-------------------------------------------------------------------------
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
+int		ft_usleep(size_t milliseconds);
+size_t	get_current_time(void);
 //Validation--------------------------------------------------------------------
-int	is_valid(int argc, char **argv);
-int	is_valid_number(char *arg);
+int		is_valid(int argc, char **argv);
+int		is_valid_number(char *arg);
+// Error------------------------------------------------------------------------
+void	free_all(t_data *data);
+void	destroy_all(t_data *data);
+//INIT--------------------------------------------------------------------------
+void	init_data(t_data *data, char **argv);
+void	init_input(t_philo *philo, char **argv);
+void	init_philos(t_data *data, char **argv);
+void	init_forks(t_data *data, char **argv);
 #endif

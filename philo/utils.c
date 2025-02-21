@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:07:53 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/20 16:08:06 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:43:41 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,26 @@ int	ft_atoi(const char *str)
 		str++;
 	}
 	return (res * sign);
+}
+
+//Improved version of sleep function
+
+int		ft_usleep(size_t milliseconds)
+{
+	size_t	start;
+
+	start = get_current_time();
+	while ((get_current_time() - start < milliseconds))
+		usleep(500);
+	return (0);
+}
+
+// Function to get current time in milliseconds
+size_t	get_current_time(void)
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) == -1)
+		printf("gettimeofdat() error\n");
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
