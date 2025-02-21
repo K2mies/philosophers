@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:28:30 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/20 17:03:02 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:21:37 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/time.h>
+#include <string.h>
 #include <math.h>
 
-# define PHILO_MAX 200
+//# define PHILO_MAX 200
 
 typedef struct			s_philo
 {
@@ -44,14 +45,15 @@ typedef struct			s_philo
 	pthread_mutex_t		*meal_lock;
 }						t_philo;
 
-typedef struct			s_program
+typedef struct			s_data
 {
 	bool				dead_flag;
 	pthread_mutex_t		dead_lock;
 	pthread_mutex_t		meal_lock;
 	pthread_mutex_t		write_lock;
 	t_philo				*philos;
-}						t_program;
+	pthread_mutex_t		*forks;
+}						t_data;
 
 
 //Utils-------------------------------------------------------------------------

@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:56:12 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/20 17:02:58 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/21 10:19:57 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 // Function to check that argv inputs are valid
 int	is_valid(int argc, char **argv)
 {
-	if (ft_atoi(argv[1]) <= 0 || ft_atoi(argv[1]) > PHILO_MAX
-		|| is_valid_number(argv[1]) == 0)
+	if (ft_atoi(argv[1]) <= 0 || is_valid_number(argv[1]) == 0)
 		return (0);
 	if (ft_atoi(argv[2]) <= 0 || is_valid_number(argv[2]) == 0)
 		return (0);
