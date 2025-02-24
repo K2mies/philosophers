@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:28:30 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/21 16:43:53 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:13:07 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,18 @@ void	init_data(t_data *data, char **argv);
 void	init_input(t_philo *philo, char **argv);
 void	init_philos(t_data *data, char **argv);
 void	init_forks(t_data *data, char **argv);
+//Threads----------------------------------------------------------------------
+int		thread_create(t_data *data);
+void	*philo_routine(void *pointer);
+int		dead_loop(t_philo *philo);
+//Routines--------------------------------------------------------------------
+void	think(t_philo *philo);
+void	dream(t_philo *philo);
+void	eat(t_philo *philo);
+//Monitor---------------------------------------------------------------------
+void	print_message(char *str, t_philo *philo, int id);
+int		philosopher_dead(t_philo *philo, size_t time_to_die);
+int		check_if_dead(t_philo *philos);
+int		check_if_all_ate(t_philo *philos);
+void	*monitor(void *pointer);
 #endif
