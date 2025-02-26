@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:31:35 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/26 15:58:55 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:58:51 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 void	think(t_philo *philo)
 {
 	print_message("is thinknig", philo, philo->id);
+//	ft_usleep(philo->time_to_eat);
 	ft_usleep(philo->time_to_eat / 2);
+//	ft_usleep(philo->time_to_eat / 10);
 }
 
 // Function for SLEEPing routine

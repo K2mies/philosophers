@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:07:53 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/26 15:57:30 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:31:02 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,22 @@ size_t	get_current_time(void)
 	if (gettimeofday(&time, NULL) == -1)
 		printf("gettimeofday() error\n");
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+// Function to get int max
+int	max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	else
+		return (b);
+}
+
+// Function to get int min
+int	min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	else
+		return (b);
 }

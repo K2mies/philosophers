@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:28:30 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/26 13:49:14 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:30:59 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,15 @@ typedef struct s_data
 	pthread_mutex_t		write_lock;
 	t_philo				*philos;
 	pthread_mutex_t		*forks;
+	int					num_of_forks;
 }						t_data;
 
 //Utils-------------------------------------------------------------------------
 int		ft_atoi(const char *str);
 int		ft_usleep(size_t milliseconds);
 size_t	get_current_time(void);
+int		max(int a, int b);
+int		min(int a, int b);
 //Validation--------------------------------------------------------------------
 int		is_valid(int argc, char **argv);
 int		is_valid_number(char *arg);
