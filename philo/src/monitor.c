@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:47:39 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/24 16:24:12 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/26 11:26:40 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_message(char *str, t_philo *philo, int id)
 	pthread_mutex_lock(philo->write_lock);
 	time = get_current_time() - philo->start_time;
 	if (!dead_loop(philo))
-		printf("at %zu miliseconds, philo %d %s\n", time, id, str);
+		printf("%zu %d %s\n", time, id, str);
 	pthread_mutex_unlock(philo->write_lock);
 }
 
