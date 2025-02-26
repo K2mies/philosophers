@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:07:53 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/24 15:47:27 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/26 12:46:47 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_atoi(const char *str)
 
 //Improved version of sleep function
 
-int		ft_usleep(size_t milliseconds)
+int	ft_usleep(size_t milliseconds)
 {
 	size_t	start;
 

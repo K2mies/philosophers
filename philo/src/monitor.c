@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:47:39 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/26 11:26:40 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/26 12:54:58 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ void	print_message(char *str, t_philo *philo, int id)
 }
 
 // Function to check if specific philosopher is dead
-int		philosopher_dead(t_philo *philo, size_t time_to_die)
+int	philosopher_dead(t_philo *philo, size_t time_to_die)
 {
 	pthread_mutex_lock(philo->meal_lock);
-	if  (get_current_time() - philo->last_meal >= time_to_die
-			&& philo->eating == false)
-			return (pthread_mutex_unlock(philo->meal_lock), 1);
+	if (get_current_time() - philo->last_meal >= time_to_die
+		&& philo->eating == false)
+		return (pthread_mutex_unlock(philo->meal_lock), 1);
 	pthread_mutex_unlock(philo->meal_lock);
 	return (0);
 }
 
 // Function to check if any philosopher has diead
-int		check_if_dead(t_philo *philos)
+int	check_if_dead(t_philo *philos)
 {
 	int		i;
 
@@ -57,7 +57,7 @@ int		check_if_dead(t_philo *philos)
 }
 
 // Function to check if all the philos ate the number of meals
-int		check_if_all_ate(t_philo *philos)
+int	check_if_all_ate(t_philo *philos)
 {
 	int	i;
 	int	finished_eating;
@@ -91,6 +91,6 @@ void	*monitor(void *pointer)
 	philos = (t_philo *)pointer;
 	while (1)
 		if (check_if_dead(philos) == 1 || check_if_all_ate(philos) == 1)
-			break;
+			break ;
 	return (pointer);
 }

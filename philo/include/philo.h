@@ -6,26 +6,26 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:28:30 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/24 16:13:07 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/26 13:49:14 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <limits.h>
-#include <pthread.h>
-#include <stdbool.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/time.h>
-#include <string.h>
-#include <math.h>
+# include <limits.h>
+# include <pthread.h>
+# include <stdbool.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <sys/time.h>
+# include <string.h>
+# include <math.h>
 
 //# define PHILO_MAX 200
 
-typedef struct			s_philo
+typedef struct s_philo
 {
 	pthread_t			thread;
 	int					id;
@@ -46,7 +46,7 @@ typedef struct			s_philo
 	pthread_mutex_t		*meal_lock;
 }						t_philo;
 
-typedef struct			s_data
+typedef struct s_data
 {
 	pthread_t			observer;
 	bool				dead_flag;
@@ -57,7 +57,6 @@ typedef struct			s_data
 	pthread_mutex_t		*forks;
 }						t_data;
 
-
 //Utils-------------------------------------------------------------------------
 int		ft_atoi(const char *str);
 int		ft_usleep(size_t milliseconds);
@@ -66,6 +65,7 @@ size_t	get_current_time(void);
 int		is_valid(int argc, char **argv);
 int		is_valid_number(char *arg);
 // Error------------------------------------------------------------------------
+void	destroy_and_free_all(t_data *data);
 void	free_all(t_data *data);
 void	destroy_all(t_data *data);
 //INIT--------------------------------------------------------------------------
