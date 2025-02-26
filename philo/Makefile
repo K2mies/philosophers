@@ -17,7 +17,15 @@ HEADERS = -I ./include
 SRC_DIR	= philo/
 OBJ_DIR = obj/
 
-SRCS	= $(shell find ./src -iname "*.c")
+SRCS	= 	src/philo.c \
+			src/utils.c \
+			src/error.c \
+			src/validation.c \
+			src/init.c \
+			src/monitor.c \
+			src/routines.c \
+			src/threads.c
+
 OBJS    = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
 
 #OBJS	= $(SRCS:.c=.o)
