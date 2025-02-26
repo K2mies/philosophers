@@ -9,7 +9,7 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 #------------------------------------------------------------------------------------
-NAME	= philosophers
+NAME	= philo
 CC		= cc
 CFLAGS	= -Wextra -Werror -Wall -pthread
 HEADERS = -I ./include
@@ -17,7 +17,7 @@ HEADERS = -I ./include
 SRC_DIR	= philo/
 OBJ_DIR = obj/
 
-SRCS	= $(shell find ./ -iname "*.c")
+SRCS	= $(shell find ./src -iname "*.c")
 OBJS    = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
 
 #OBJS	= $(SRCS:.c=.o)
