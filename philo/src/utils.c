@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:07:53 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/26 12:46:47 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:57:30 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ size_t	get_current_time(void)
 	struct timeval	time;
 
 	if (gettimeofday(&time, NULL) == -1)
-		printf("gettimeofdat() error\n");
+		printf("gettimeofday() error\n");
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }

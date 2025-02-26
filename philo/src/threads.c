@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 11:19:07 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/26 13:49:46 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:04:42 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	*philo_routine(void *pointer)
 		ft_usleep(1);
 	while (!dead_loop(philo))
 	{
-		think(philo);
-		dream(philo);
 		eat(philo);
+		dream(philo);
+		think(philo);
 	}
 	return (pointer);
 }
