@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:31:35 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/27 10:49:54 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/27 12:03:21 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // Function for THINKing routine.
 void	think(t_philo *philo)
 {
-	print_message("is thinknig", philo, philo->id);
+	print_message("is thinking", philo, philo->id);
 	ft_usleep(1);
 }
 
