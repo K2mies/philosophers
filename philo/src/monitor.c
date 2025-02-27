@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:47:39 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/27 12:12:29 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/27 17:06:33 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,13 @@ void	print_message(char *str, t_philo *philo, int id)
 int	philosopher_dead(t_philo *philo, size_t time_to_die)
 {
 	pthread_mutex_lock(philo->meal_lock);
-	if (get_current_time() - philo->last_meal >= time_to_die
-		&& philo->eating == false)
+	if (get_current_time() - philo->last_meal >= time_to_die)
 		return (pthread_mutex_unlock(philo->meal_lock), 1);
 	pthread_mutex_unlock(philo->meal_lock);
 	return (0);
 }
 
-// Function to check if any philosopher has diead
+// Function to check if any philosopher has died
 int	check_if_dead(t_philo *philos)
 {
 	int		i;
