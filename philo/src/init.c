@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 13:10:56 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/26 16:51:47 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/27 10:50:56 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,8 @@ void	init_philos(t_data *d, char **argv)
 		d->philos[i].dead_lock = &d->dead_lock;
 		d->philos[i].meal_lock = &d->meal_lock;
 		d->philos[i].dead = &d->dead_flag;
-
-		d->philos[i].l_fork = &d->forks[min(i,((i + 1) % d->num_of_forks))];
-		d->philos[i].r_fork = &d->forks[max(i,((i + 1) % d->num_of_forks))];
-
-//		d->philos[i].l_fork = &d->forks[i];
-//		if (i == 0)
-//			d->philos[i].r_fork = &d->forks[d->philos[i].num_of_philos - 1];
-//		else
-//			d->philos[i].r_fork = &d->forks[i - 1];
+		d->philos[i].l_fork = &d->forks[min(i, ((i + 1) % d->num_of_forks))];
+		d->philos[i].r_fork = &d->forks[max(i, ((i + 1) % d->num_of_forks))];
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:28:30 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/26 16:30:59 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/27 10:49:03 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <string.h>
-# include <math.h>
 
 //# define PHILO_MAX 200
 
