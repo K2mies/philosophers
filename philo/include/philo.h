@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:28:30 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/27 17:07:26 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/28 10:30:56 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <string.h>
-
-//# define PHILO_MAX 200
 
 typedef struct s_philo
 {
