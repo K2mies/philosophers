@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:07:53 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/27 16:38:54 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/28 15:32:25 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,20 @@ int	ft_atoi(const char *str)
 
 //Improved version of sleep function
 
-int	ft_usleep(size_t milliseconds)
+int	ft_usleep(size_t milliseconds, t_philo *philo)
 {
 	size_t	start;
 
 	start = get_current_time();
 	while ((get_current_time() - start < milliseconds))
+	{
 		usleep(500);
+		if (simulation_ended(philo->data))
+		{
+			destroy_and_free_all(philo->data);
+			exit(EXIT_SUCCESS);
+		}
+	}
 	return (0);
 }
 

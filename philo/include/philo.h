@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:28:30 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/28 10:38:02 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/28 15:33:39 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <sys/time.h>
 # include <string.h>
 
+typedef struct s_data	t_data;
+
 typedef struct s_philo
 {
 	pthread_t			thread;
@@ -35,6 +37,7 @@ typedef struct s_philo
 	int					num_of_philos;
 	int					num_times_to_eat;
 	bool				*dead;
+	t_data				*data;
 	pthread_mutex_t		*r_fork;
 	pthread_mutex_t		*l_fork;
 	pthread_mutex_t		*write_lock;
@@ -56,7 +59,7 @@ typedef struct s_data
 
 //Utils-------------------------------------------------------------------------
 int		ft_atoi(const char *str);
-int		ft_usleep(size_t milliseconds);
+int		ft_usleep(size_t milliseconds, t_philo *philo);
 size_t	get_current_time(void);
 int		max(int a, int b);
 int		min(int a, int b);
@@ -64,6 +67,7 @@ int		min(int a, int b);
 int		is_valid(int argc, char **argv);
 int		is_valid_number(char *arg);
 // Error------------------------------------------------------------------------
+int		simulation_ended(t_data *data);
 void	destroy_and_free_all(t_data *data);
 void	free_all(t_data *data);
 void	destroy_all(t_data *data);

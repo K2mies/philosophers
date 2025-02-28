@@ -6,11 +6,21 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 13:15:13 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/27 16:32:25 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/28 15:32:36 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+//Function to check if simulation has ended
+int	simulation_ended(t_data *data)
+{
+	pthread_mutex_lock(&data->dead_lock);
+	if (data->dead_flag == true)
+		return (1);
+	pthread_mutex_unlock(&data->dead_lock);
+	return (0);
+}
 
 //Function to destory and free all.
 void	destroy_and_free_all(t_data *data)
