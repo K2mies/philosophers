@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:28:30 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/28 10:30:56 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/28 10:38:02 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_philo
 {
 	pthread_t			thread;
 	int					id;
-	bool				eating;
 	int					meals_eaten;
 	size_t				last_meal;
 	size_t				time_to_die;

@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 13:10:56 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/02/27 16:35:26 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/02/28 10:37:48 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	init_philos(t_data *d, char **argv)
 	while (++i < ft_atoi(argv[1]))
 	{
 		d->philos[i].id = i + 1;
-		d->philos[i].eating = false;
 		d->philos[i].meals_eaten = 0;
 		init_input(&d->philos[i], argv);
 		d->philos[i].start_time = get_current_time();
