@@ -28,8 +28,6 @@ SRCS	= 	src/philo.c \
 
 OBJS    = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
 
-#OBJS	= $(SRCS:.c=.o)
-
 #----------------------------------------------------------------------------------
 all: $(NAME)
 
