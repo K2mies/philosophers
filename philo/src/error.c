@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 13:15:13 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/03/05 12:04:31 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/03/05 16:10:16 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,11 @@ void	destroy_all(t_data *data)
 	i = -1;
 	while (++i < data->philos[0].num_of_philos)
 	{
-//		pthread_mutex_lock(&data->write_lock);
 		if (data->forks[i].lock == true)
 		{
 			pthread_mutex_unlock(&data->forks[i].fork);
 			data->forks[i].lock = false;
 		}
-//		pthread_mutex_unlock(&data->write_lock);
-//		printf("Destroyed a fork\n");
 	}
 	pthread_mutex_unlock(&data->dead_lock);
 
