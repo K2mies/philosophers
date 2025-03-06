@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:28:30 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/03/05 16:55:26 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/03/06 11:14:29 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@
 # include <sys/time.h>
 # include <string.h>
 
-
-
 typedef struct s_data	t_data;
 
-typedef struct	s_fork
+typedef struct s_fork
 {
 	bool			lock;
 	pthread_mutex_t	fork;
@@ -58,13 +56,11 @@ typedef struct s_data
 	pthread_t			observer;
 	bool				dead_flag;
 	bool				error;
-//	bool				ready;
 	pthread_mutex_t		dead_lock;
 	pthread_mutex_t		meal_lock;
 	pthread_mutex_t		write_lock;
 	t_philo				*philos;
 	t_fork				*forks;
-//	pthread_mutex_t		*forks;
 	int					num_of_forks;
 }						t_data;
 

@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:31:35 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/03/05 15:28:41 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/03/06 11:02:10 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,35 @@ int	think(t_philo *philo)
 int	dream(t_philo *philo)
 {
 	print_message("is sleeping", philo, philo->id);
-//	if (ft_usleep(1, philo) != 0)
 	if (ft_usleep(philo->time_to_sleep, philo) != 0)
 		return (1);
+	return (0);
+}
+
+//EAT Helper function for one philo case
+static int	one_philo(t_philo *philo)
+{
+	if (philo->num_of_philos == 1)
+	{
+		ft_usleep(philo->time_to_die, philo);
+		philo->r_fork->lock = false;
+		pthread_mutex_unlock(&philo->r_fork->fork);
+		return (1);
+	}
+	return (0);
+}
+
+//EAT Helper function to put down forks and unlock them if dead.
+static int	if_dead(t_philo *philo)
+{
+	if (ft_usleep(philo->time_to_eat, philo) != 0)
+	{
+		philo->l_fork->lock = false;
+		pthread_mutex_unlock(&philo->l_fork->fork);
+		philo->r_fork->lock = false;
+		pthread_mutex_unlock(&philo->r_fork->fork);
+		return (1);
+	}
 	return (0);
 }
 
@@ -37,13 +63,8 @@ int	eat(t_philo *philo)
 	pthread_mutex_lock(&philo->r_fork->fork);
 	philo->r_fork->lock = true;
 	print_message("has taken a fork", philo, philo->id);
-	if (philo->num_of_philos == 1)
-	{
-		ft_usleep(philo->time_to_die, philo);
-		philo->r_fork->lock = false;
-		pthread_mutex_unlock(&philo->r_fork->fork);
+	if (one_philo(philo) == 1)
 		return (1);
-	}
 	pthread_mutex_lock(&philo->l_fork->fork);
 	philo->l_fork->lock = true;
 	print_message("has taken a fork", philo, philo->id);
@@ -52,16 +73,8 @@ int	eat(t_philo *philo)
 	philo->last_meal = get_current_time();
 	philo->meals_eaten++;
 	pthread_mutex_unlock(philo->meal_lock);
-	if (ft_usleep(philo->time_to_eat, philo) != 0)
-	{
-//		printf("ft usleep fail\n");
-		philo->l_fork->lock = false;
-		pthread_mutex_unlock(&philo->l_fork->fork);
-		philo->r_fork->lock = false;
-		pthread_mutex_unlock(&philo->r_fork->fork);
-//		printf("Philo %d dropped his forks\n", philo->id);
-		return 1;
-	}
+	if (if_dead(philo) == 1)
+		return (1);
 	pthread_mutex_lock(&philo->data->write_lock);
 	philo->l_fork->lock = false;
 	pthread_mutex_unlock(&philo->data->write_lock);
@@ -70,6 +83,5 @@ int	eat(t_philo *philo)
 	philo->r_fork->lock = false;
 	pthread_mutex_unlock(&philo->data->write_lock);
 	pthread_mutex_unlock(&philo->r_fork->fork);
-//	printf("Philo %d dropped his forks\n", philo->id);
 	return (0);
 }

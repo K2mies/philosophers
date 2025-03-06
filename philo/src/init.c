@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 13:10:56 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/03/05 16:40:49 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/03/06 10:40:39 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	init_data(t_data *data, char **argv)
 
 	count = ft_atoi(argv[1]);
 	memset(data, 0, sizeof(t_data));
-//	data->dead_flag = false;
-//	data->thread_error_flag = false;
 	data->philos = malloc(sizeof(t_philo) * count);
 	if (data->philos == NULL)
 		free_all(data);

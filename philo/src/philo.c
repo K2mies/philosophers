@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:10:25 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/03/05 12:00:40 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/03/06 10:50:34 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,12 @@ int	main(int argc, char **argv)
 	if (argc != 5 && argc != 6)
 	{
 		printf("wrong argument count\n");
-//		exit(EXIT_FAILURE);
-		return(0);
+		return (0);
 	}
 	if (is_valid(argc, argv) == 0)
 	{
 		printf("invalid input\n");
-//		exit(EXIT_FAILURE);
-		return(0);
+		return (0);
 	}
 	init_data(&data, argv);
 	init_forks(&data, argv);

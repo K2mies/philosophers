@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 13:15:13 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/03/05 17:00:17 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/03/06 10:49:32 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,8 @@ void	print_death_message(char *str, t_philo *philo, int id)
 {
 	size_t	time;
 
-//	pthread_mutex_lock(philo->dead_lock);
 	time = get_current_time() - philo->start_time;
-//	if (*philo->dead)
 	printf("%zu %d %s\n", time, id, str);
-//	pthread_mutex_unlock(philo->dead_lock);
 }
 
 //Function to check if simulation has ended
@@ -58,16 +55,6 @@ void	destroy_all(t_data *data)
 {
 	int	i;
 
-//	pthread_mutex_unlock(&data->write_lock);
-//	pthread_mutex_unlock(&data->meal_lock);
-//	if (pthread_mutex_unlock(&data->write_lock))
-//		print_message("error mutex writelock\n", &data->philos[0], 0);
-//	if (pthread_mutex_unlock(&data->meal_lock))
-//		print_message("error mutex meallock\n", &data->philos[0], 0);
-//	if (pthread_mutex_unlock(&data->dead_lock) == 0)
-//		printf("testing sdklfjslk\n");
-//		print_message("error mutex deadlock\n", &data->philos[0], 0);
-
 	pthread_mutex_lock(&data->dead_lock);
 	i = -1;
 	while (++i < data->philos[0].num_of_philos)
@@ -79,7 +66,6 @@ void	destroy_all(t_data *data)
 		}
 	}
 	pthread_mutex_unlock(&data->dead_lock);
-
 	pthread_mutex_destroy(&data->write_lock);
 	pthread_mutex_destroy(&data->meal_lock);
 	pthread_mutex_destroy(&data->dead_lock);
