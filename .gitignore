@@ -1,2 +1,4 @@
 *.o
-*.swpi
+*.swp
+*.swo
+

@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:28:30 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/03/05 15:57:43 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/03/05 17:08:24 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int		min(int a, int b);
 int		is_valid(int argc, char **argv);
 int		is_valid_number(char *arg);
 // Error------------------------------------------------------------------------
+void	print_death_message(char *str, t_philo *philo, int id);
 int		simulation_ended(t_data *data);
 void	destroy_and_free_all(t_data *data);
 void	free_all(t_data *data);

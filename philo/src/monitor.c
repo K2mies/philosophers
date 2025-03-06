@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:47:39 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/03/05 16:09:57 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/03/05 17:08:07 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,20 @@ void	print_message(char *str, t_philo *philo, int id)
 {
 	size_t	time;
 
-	pthread_mutex_lock(philo->write_lock);
+//	pthread_mutex_lock(philo->dead_lock);
+//	if (*philo->dead == true)
+//	{
+//		pthread_mutex_unlock(philo->dead_lock);
+//		return ;	
+//	}
+//	pthread_mutex_unlock(philo->dead_lock);
+
+	pthread_mutex_lock(philo->dead_lock);
 	time = get_current_time() - philo->start_time;
-	if (!dead_loop(philo))
+//	if (!dead_loop(philo))
+	if (!*philo->dead)
 		printf("%zu %d %s\n", time, id, str);
-	pthread_mutex_unlock(philo->write_lock);
+	pthread_mutex_unlock(philo->dead_lock);
 }
 
 // Function to check if specific philosopher is dead
@@ -29,7 +38,10 @@ int	philosopher_dead(t_philo *philo, size_t time_to_die)
 {
 	pthread_mutex_lock(philo->meal_lock);
 	if (get_current_time() - philo->last_meal >= time_to_die)
-		return (pthread_mutex_unlock(philo->meal_lock), 1);
+	{
+		pthread_mutex_unlock(philo->meal_lock);
+		return (1);
+	}
 	pthread_mutex_unlock(philo->meal_lock);
 	return (0);
 }
@@ -44,9 +56,13 @@ int	check_if_dead(t_philo *philos)
 	{
 		if (philosopher_dead(&philos[i], philos[i].time_to_die))
 		{
-			print_message("died", &philos[i], philos[i].id);
+//			*philos->dead = true;
+//			print_message("died", &philos[i], philos[i].id);
 			pthread_mutex_lock(philos[0].dead_lock);
+//			print death message
+			print_death_message("died", &philos[i], philos[i].id);
 			*philos->dead = true;
+			
 			pthread_mutex_unlock(philos[0].dead_lock);
 			return (1);
 		}

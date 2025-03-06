@@ -6,11 +6,23 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 13:15:13 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/03/05 16:10:16 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/03/05 17:08:19 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+//Function to print death message
+void	print_death_message(char *str, t_philo *philo, int id)
+{
+	size_t	time;
+
+//	pthread_mutex_lock(philo->dead_lock);
+	time = get_current_time() - philo->start_time;
+//	if (*philo->dead)
+	printf("%zu %d %s\n", time, id, str);
+//	pthread_mutex_unlock(philo->dead_lock);
+}
 
 //Function to check if simulation has ended
 int	simulation_ended(t_data *data)

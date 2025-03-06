@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 11:19:07 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/03/05 15:57:45 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/03/05 17:08:12 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ int	dead_loop(t_philo *philo)
 {
 	pthread_mutex_lock(philo->dead_lock);
 	if (*philo->dead == 1)
-		return (pthread_mutex_unlock(philo->dead_lock), 1);
+	{
+		pthread_mutex_unlock(philo->dead_lock);
+		return (1);
+	}
+//		return (pthread_mutex_unlock(philo->dead_lock), 1);
 	pthread_mutex_unlock(philo->dead_lock);
 	return (0);
 }
