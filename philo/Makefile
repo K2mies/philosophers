@@ -11,8 +11,7 @@ WHITE = \033[0;97m
 #------------------------------------------------------------------------------------
 NAME	= philo
 CC		= cc
-# REMEMBER TO TAKE AWAY THE -g before SUBMITION
-CFLAGS	= -Wextra -Werror -Wall -pthread -g
+CFLAGS	= -Wextra -Werror -Wall -pthread
 HEADERS = -I ./include
 
 SRC_DIR	= philo/
