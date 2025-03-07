@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 13:15:13 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/03/06 10:49:32 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/03/07 11:57:30 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ void	destroy_all(t_data *data)
 		}
 	}
 	pthread_mutex_unlock(&data->dead_lock);
-	pthread_mutex_destroy(&data->write_lock);
-	pthread_mutex_destroy(&data->meal_lock);
 	pthread_mutex_destroy(&data->dead_lock);
 	i = -1;
 	while (++i < data->philos[0].num_of_philos)

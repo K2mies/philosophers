@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:28:30 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/03/07 11:17:59 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/03/07 11:56:34 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ typedef struct s_philo
 	t_data				*data;
 	t_fork				*r_fork;
 	t_fork				*l_fork;
-	pthread_mutex_t		*write_lock;
 	pthread_mutex_t		*dead_lock;
-	pthread_mutex_t		*meal_lock;
 }						t_philo;
 
 typedef struct s_data
@@ -57,8 +55,6 @@ typedef struct s_data
 	bool				dead_flag;
 	bool				error;
 	pthread_mutex_t		dead_lock;
-	pthread_mutex_t		meal_lock;
-	pthread_mutex_t		write_lock;
 	t_philo				*philos;
 	t_fork				*forks;
 	int					num_of_forks;

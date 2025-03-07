@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:31:35 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/03/06 11:02:10 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/03/07 11:44:59 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,19 @@ int	eat(t_philo *philo)
 	philo->l_fork->lock = true;
 	print_message("has taken a fork", philo, philo->id);
 	print_message("is eating", philo, philo->id);
-	pthread_mutex_lock(philo->meal_lock);
+	pthread_mutex_lock(philo->dead_lock);
 	philo->last_meal = get_current_time();
 	philo->meals_eaten++;
-	pthread_mutex_unlock(philo->meal_lock);
+	pthread_mutex_unlock(philo->dead_lock);
 	if (if_dead(philo) == 1)
 		return (1);
-	pthread_mutex_lock(&philo->data->write_lock);
+	pthread_mutex_lock(&philo->data->dead_lock);
 	philo->l_fork->lock = false;
-	pthread_mutex_unlock(&philo->data->write_lock);
+	pthread_mutex_unlock(&philo->data->dead_lock);
 	pthread_mutex_unlock(&philo->l_fork->fork);
-	pthread_mutex_lock(&philo->data->write_lock);
+	pthread_mutex_lock(&philo->data->dead_lock);
 	philo->r_fork->lock = false;
-	pthread_mutex_unlock(&philo->data->write_lock);
+	pthread_mutex_unlock(&philo->data->dead_lock);
 	pthread_mutex_unlock(&philo->r_fork->fork);
 	return (0);
 }

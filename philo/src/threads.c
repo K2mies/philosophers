@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 11:19:07 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/03/07 11:14:14 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/03/07 11:57:49 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ void	*philo_routine(void *pointer)
 	t_philo	*philo;
 
 	philo = (t_philo *)pointer;
-	pthread_mutex_lock(&philo->data->write_lock);
+	pthread_mutex_lock(&philo->data->dead_lock);
 	if (philo->data->error == true)
 	{
-		pthread_mutex_unlock(&philo->data->write_lock);
+		pthread_mutex_unlock(&philo->data->dead_lock);
 		return (NULL);
 	}
-	pthread_mutex_unlock(&philo->data->write_lock);
+	pthread_mutex_unlock(&philo->data->dead_lock);
 	if (philo->id % 2 == 0)
 		ft_usleep(10, philo);
 	while (!dead_loop(philo))
@@ -55,11 +55,8 @@ void	*philo_routine(void *pointer)
 //Helper function for if thread creation fails
 static int	thread_failure(t_data *data, int i)
 {
-	pthread_mutex_lock(&data->write_lock);
-	data->error = true;
-	pthread_mutex_unlock(&data->write_lock);
 	pthread_mutex_lock(&data->dead_lock);
-	data->dead_flag = true;
+	data->error = true;
 	pthread_mutex_unlock(&data->dead_lock);
 	while (i--)
 	{	
@@ -67,6 +64,7 @@ static int	thread_failure(t_data *data, int i)
 		printf("joined thread %d\n", i);
 	}
 	pthread_join(data->observer, NULL);
+	printf("thread failure, all created threads successfully joined");
 	return (1);
 }
 

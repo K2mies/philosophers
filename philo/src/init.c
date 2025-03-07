@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 13:10:56 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/03/07 10:50:22 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/03/07 11:57:02 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ int	init_data(t_data *data, char **argv)
 		return (1);
 	}
 	memset(data->forks, 0, sizeof(t_fork) * count);
-	pthread_mutex_init(&data->dead_lock, NULL);
-	pthread_mutex_init(&data->meal_lock, NULL);
-	pthread_mutex_init(&data->write_lock, NULL);
+	if (pthread_mutex_init(&data->dead_lock, NULL) != 0)
+	{
+		free_all(data);
+		return (1);
+	}
 	return (0);
 }
 
@@ -65,9 +67,7 @@ void	init_philos(t_data *d, char **argv)
 		init_input(&d->philos[i], argv);
 		d->philos[i].start_time = get_current_time();
 		d->philos[i].last_meal = get_current_time();
-		d->philos[i].write_lock = &d->write_lock;
 		d->philos[i].dead_lock = &d->dead_lock;
-		d->philos[i].meal_lock = &d->meal_lock;
 		d->philos[i].dead = &d->dead_flag;
 		d->philos[i].data = d;
 		d->philos[i].l_fork = &d->forks[min(i, ((i + 1) % d->num_of_forks))];
