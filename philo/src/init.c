@@ -6,14 +6,14 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 13:10:56 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/03/06 10:40:39 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/03/07 10:50:22 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 // Function to initialize data struct and malloc space
-void	init_data(t_data *data, char **argv)
+int	init_data(t_data *data, char **argv)
 {
 	int	count;
 
@@ -21,13 +21,22 @@ void	init_data(t_data *data, char **argv)
 	memset(data, 0, sizeof(t_data));
 	data->philos = malloc(sizeof(t_philo) * count);
 	if (data->philos == NULL)
+	{
 		free_all(data);
+		return (1);
+	}
+	memset(data->philos, 0, sizeof(t_philo) * count);
 	data->forks = malloc(sizeof(t_fork) * count);
 	if (data->forks == NULL)
+	{
 		free_all(data);
+		return (1);
+	}
+	memset(data->forks, 0, sizeof(t_fork) * count);
 	pthread_mutex_init(&data->dead_lock, NULL);
 	pthread_mutex_init(&data->meal_lock, NULL);
 	pthread_mutex_init(&data->write_lock, NULL);
+	return (0);
 }
 
 // Function to initializ input from the user
@@ -67,7 +76,7 @@ void	init_philos(t_data *d, char **argv)
 }
 
 // Function to initalize forks (mutex).
-void	init_forks(t_data *data, char **argv)
+int	init_forks(t_data *data, char **argv)
 {
 	int	i;
 
@@ -82,8 +91,10 @@ void	init_forks(t_data *data, char **argv)
 				pthread_mutex_destroy(&data->forks[i].fork);
 				printf("mutex destroyed\n");
 				free_all(data);
+				return (1);
 			}
 		}
 	}
 	data->num_of_forks = ft_atoi(argv[1]);
+	return (0);
 }

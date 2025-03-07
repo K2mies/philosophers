@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:10:25 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/03/06 10:50:34 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/03/07 11:13:52 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ int	main(int argc, char **argv)
 		printf("invalid input\n");
 		return (0);
 	}
-	init_data(&data, argv);
-	init_forks(&data, argv);
+	if (init_data(&data, argv) == 1)
+		return (1);
+	if (init_forks(&data, argv) == 1)
+		return (1);
 	init_philos(&data, argv);
 	thread_create(&data);
 	destroy_all(&data);

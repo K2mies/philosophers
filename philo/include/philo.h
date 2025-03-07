@@ -6,7 +6,7 @@
 /*   By: rhvidste <rhvidste@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:28:30 by rhvidste          #+#    #+#             */
-/*   Updated: 2025/03/06 11:14:29 by rhvidste         ###   ########.fr       */
+/*   Updated: 2025/03/07 11:17:59 by rhvidste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,10 @@ void	destroy_and_free_all(t_data *data);
 void	free_all(t_data *data);
 void	destroy_all(t_data *data);
 //INIT--------------------------------------------------------------------------
-void	init_data(t_data *data, char **argv);
+int		init_data(t_data *data, char **argv);
 void	init_input(t_philo *philo, char **argv);
 void	init_philos(t_data *data, char **argv);
-void	init_forks(t_data *data, char **argv);
+int		init_forks(t_data *data, char **argv);
 //Threads----------------------------------------------------------------------
 int		thread_create(t_data *data);
 void	*philo_routine(void *pointer);
