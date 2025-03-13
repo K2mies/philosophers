@@ -90,9 +90,9 @@ int	init_forks(t_data *data, char **argv)
 			{
 				pthread_mutex_destroy(&data->forks[i].fork);
 				printf("mutex destroyed\n");
-				free_all(data);
-				return (1);
 			}
+			free_all(data);
+			return (1);
 		}
 	}
 	data->num_of_forks = ft_atoi(argv[1]);
